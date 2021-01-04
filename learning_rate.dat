@@ -1,0 +1,136 @@
+Loading the datasets...
+Studying the learning rate...
+without the fully-connected layer
+Callbacks:
+ - Monitor(X_test, L_test)
+ - EarlyStopping(monitor='accuracy', patience=2)
+Parameters:  [1e-05, 0.0001, 0.001, 0.01]
+Number of runs:  5
+
+ Learning rate:  1e-05
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d (Conv2D)              (None, 39, 39, 4)         20        
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 19, 19, 4)         0         
+_________________________________________________________________
+dropout (Dropout)            (None, 19, 19, 4)         0         
+_________________________________________________________________
+flatten (Flatten)            (None, 1444)              0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 1445      
+=================================================================
+Total params: 1,465
+Trainable params: 1,465
+Non-trainable params: 0
+_________________________________________________________________
+
+ Additional parameters: 
+kernel size:  2
+pooling size:  2
+dropout:  0.0
+optimizer: Adam
+learning rate:  1e-05
+loss: BinaryCrossentropy()
+
+Accuracy on validate:  1.0 0.0
+Accuracy on test:  0.8338000059127808 0.008447485017928136
+Stopping epoch:  9.0 8.07465169527454
+
+ Learning rate:  0.0001
+Model: "sequential_6"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_6 (Conv2D)            (None, 39, 39, 4)         20        
+_________________________________________________________________
+max_pooling2d_6 (MaxPooling2 (None, 19, 19, 4)         0         
+_________________________________________________________________
+dropout_6 (Dropout)          (None, 19, 19, 4)         0         
+_________________________________________________________________
+flatten_6 (Flatten)          (None, 1444)              0         
+_________________________________________________________________
+dense_6 (Dense)              (None, 1)                 1445      
+=================================================================
+Total params: 1,465
+Trainable params: 1,465
+Non-trainable params: 0
+_________________________________________________________________
+
+ Additional parameters: 
+kernel size:  2
+pooling size:  2
+dropout:  0.0
+optimizer: Adam
+learning rate:  0.0001
+loss: BinaryCrossentropy()
+
+Accuracy on validate:  1.0 0.0
+Accuracy on test:  0.8441999912261963 0.010759186312322377
+Stopping epoch:  6.2 3.4292856398964493
+
+ Learning rate:  0.001
+Model: "sequential_12"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_12 (Conv2D)           (None, 39, 39, 4)         20        
+_________________________________________________________________
+max_pooling2d_12 (MaxPooling (None, 19, 19, 4)         0         
+_________________________________________________________________
+dropout_12 (Dropout)         (None, 19, 19, 4)         0         
+_________________________________________________________________
+flatten_12 (Flatten)         (None, 1444)              0         
+_________________________________________________________________
+dense_12 (Dense)             (None, 1)                 1445      
+=================================================================
+Total params: 1,465
+Trainable params: 1,465
+Non-trainable params: 0
+_________________________________________________________________
+
+ Additional parameters: 
+kernel size:  2
+pooling size:  2
+dropout:  0.0
+optimizer: Adam
+learning rate:  0.001
+loss: BinaryCrossentropy()
+
+Accuracy on validate:  1.0 0.0
+Accuracy on test:  0.8230000138282776 0.04191895728833297
+Stopping epoch:  12.2 6.462197768561405
+
+ Learning rate:  0.01
+Model: "sequential_18"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_18 (Conv2D)           (None, 39, 39, 4)         20        
+_________________________________________________________________
+max_pooling2d_18 (MaxPooling (None, 19, 19, 4)         0         
+_________________________________________________________________
+dropout_18 (Dropout)         (None, 19, 19, 4)         0         
+_________________________________________________________________
+flatten_18 (Flatten)         (None, 1444)              0         
+_________________________________________________________________
+dense_18 (Dense)             (None, 1)                 1445      
+=================================================================
+Total params: 1,465
+Trainable params: 1,465
+Non-trainable params: 0
+_________________________________________________________________
+
+ Additional parameters: 
+kernel size:  2
+pooling size:  2
+dropout:  0.0
+optimizer: Adam
+learning rate:  0.01
+loss: BinaryCrossentropy()
+
+Accuracy on validate:  0.9998000025749206 0.0003999948501586914
+Accuracy on test:  0.8175999879837036 0.07446234373108718
+Stopping epoch:  9.4 5.885575587824865

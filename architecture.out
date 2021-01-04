@@ -1,0 +1,124 @@
+Callbacks: 
+ - Monitor(X_test, L_test)
+Number of runs: 5
+ - EarlyStopping(monitor='accuracy', patience=2)
+
+ Kernel size: 2
+Architecture: [1]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.7140000104904175 - 0.053639524016181384
+Stopping epoch: 6.4 - 0.7999999999999999
+
+ Kernel size: 2
+Architecture: [2]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.7606000065803528 - 0.11567990487250551
+Stopping epoch: 6.0 - 1.0954451150103321
+
+ Kernel size: 2
+Architecture: [4]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8299999952316284 - 0.06521963152653194
+Stopping epoch: 4.0 - 0.0
+
+ Kernel size: 2
+Architecture: [6]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8057999968528747 - 0.04651623427366757
+Stopping epoch: 3.8 - 0.39999999999999997
+
+ Kernel size: 2
+Architecture: [8]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8401999950408936 - 0.017679360459661005
+Stopping epoch: 3.6 - 0.4898979485566356
+
+ Kernel size: 2
+Architecture: [16]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8641999959945679 - 0.030622874520799023
+Stopping epoch: 3.0 - 0.0
+
+ Kernel size: 2
+Architecture: [1, 8]
+Accuracy on validate: 0.9044000029563903 - 0.19119999408721922
+Accuracy on test: 0.7227999925613403 - 0.053986659781439815
+Stopping epoch: 2.8 - 1.7204650534085253
+
+ Kernel size: 2
+Architecture: [4, 4]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8013999938964844 - 0.05524345209115094
+Stopping epoch: 3.8 - 0.39999999999999997
+
+ Kernel size: 2
+Architecture: [8, 1]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.725 - 0.019308034589254255
+Stopping epoch: 4.8 - 0.39999999999999997
+
+ Kernel size: 2
+Architecture: [8, 16]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8491999983787537 - 0.024685214622856024
+Stopping epoch: 3.0 - 0.0
+
+ Kernel size: 4
+Architecture: [1]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.7154000043869019 - 0.021536946027102655
+Stopping epoch: 6.0 - 1.0954451150103321
+
+ Kernel size: 4
+Architecture: [2]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8001999974250793 - 0.02597229186215116
+Stopping epoch: 4.6 - 1.0198039027185568
+
+ Kernel size: 4
+Architecture: [4]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8134000062942505 - 0.03527378955227269
+Stopping epoch: 3.8 - 0.39999999999999997
+
+ Kernel size: 4
+Architecture: [6]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8246000051498413 - 0.0353700412194384
+Stopping epoch: 3.2 - 0.39999999999999997
+
+ Kernel size: 4
+Architecture: [8]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.851800000667572 - 0.011651618926902446
+Stopping epoch: 3.0 - 0.0
+
+ Kernel size: 4
+Architecture: [16]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8685999989509583 - 0.018325938873391314
+Stopping epoch: 3.0 - 0.0
+
+ Kernel size: 4
+Architecture: [1, 8]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.7455999970436096 - 0.03967165693105443
+Stopping epoch: 4.6 - 1.2
+
+ Kernel size: 4
+Architecture: [4, 4]
+Accuracy on validate: 0.9503999948501587 - 0.09920001029968262
+Accuracy on test: 0.7864000082015992 - 0.07125895697634382
+Stopping epoch: 4.4 - 1.3564659966250536
+
+ Kernel size: 4
+Architecture: [8, 1]
+Accuracy on validate: 0.854799997806549 - 0.19213161918599994
+Accuracy on test: 0.6885999917984009 - 0.030269468627820165
+Stopping epoch: 4.2 - 0.7483314773547882
+
+ Kernel size: 4
+Architecture: [8, 16]
+Accuracy on validate: 1.0 - 0.0
+Accuracy on test: 0.8309999942779541 - 0.030750610041579335
+Stopping epoch: 3.0 - 0.0
