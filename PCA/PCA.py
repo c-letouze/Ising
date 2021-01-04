@@ -61,10 +61,10 @@ def build_train_set(size):
     size_ordered = int(size * 7/13)
     size_disordered = size - size_ordered
     #ordered set
-    path_ordered = '../DataSets/ordered_set.pkl'
+    path_ordered = '../DataSets/ferro_ordered_set.pkl'
     x_ordered, y_ordered = load_samples(path_ordered, size_ordered)
     #disordered set
-    path_disordered = '../DataSets/disordered_set.pkl'
+    path_disordered = '../DataSets/ferro_disordered_set.pkl'
     x_disordered, y_disordered = load_samples(path_disordered, size_disordered)
     # shuffle
     x = np.concatenate((x_ordered, x_disordered), axis=0)
@@ -151,7 +151,7 @@ if ferromagnetic:
     print("\n\n PCA ON THE FERROMAGNETIC SAMPLES \n")
     print("-----------------------------------")
 
-    build_datasets = False
+    build_datasets = True
     
     if build_datasets:
         
@@ -168,7 +168,7 @@ if ferromagnetic:
         print(" - Validation samples: ", np.shape(X_val))
         
         #test set
-        path_critical = '../DataSets/near_critical_set.pkl'
+        path_critical = '../DataSets/ferro_critical_set.pkl'
         test_size = 5000
         X_test, Y_test = load_samples(path_critical, test_size)
         T_test, L_test = Y_test[:, 0], Y_test[:, 1]
@@ -230,11 +230,11 @@ else:
     
     print("Building the datasets ...")
 
-    path_ordered = '../DataSets/anti_ordered2.pkl'
+    path_ordered = '../DataSets/anti_ordered_set.pkl'
     with open(path_ordered, 'rb') as file_in:
         x_ordered, y_ordered = pkl.load(file_in)
         
-    path_disordered = '../DataSets/anti_disordered2.pkl'
+    path_disordered = '../DataSets/anti_disordered_set.pkl'
     with open(path_disordered, 'rb') as file_in:
         x_disordered, y_disordered = pkl.load(file_in)
         
@@ -244,7 +244,7 @@ else:
     
     X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.3)
     
-    path_critical = '../DataSets/anti_critical2.pkl'
+    path_critical = '../DataSets/anti_critical_set.pkl'
     with open(path_critical, 'rb') as file_in:
         X_test, Y_test = pkl.load(file_in)
     
@@ -470,7 +470,7 @@ if do_logreg :
         np.savetxt(path_logreg_data, arr_sigmoid, delimiter=' ')
     
     
-do_temp_regression = True
+do_temp_regression = False
 if do_temp_regression:
     
     
