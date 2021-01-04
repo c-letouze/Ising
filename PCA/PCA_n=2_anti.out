@@ -1,0 +1,34 @@
+-----------------------------------
+
+
+ PCA ON THE ANTI-FERROMAGNETIC SAMPLES 
+
+-----------------------------------
+Building the datasets ...
+Training set (X / L):  (2912, 1600) (2912,)
+Validation set (X / L):  (1248, 1600) (1248,)
+Test set (X / L):  (960, 1600) (960,)
+
+ Principal Component Analysis...
+ - Number of components:  2
+Explained variance:  [529.4512327   57.22372462]
+Explained variance ratio:  [0.33086339 0.03576011]
+Singular values:  [1241.46386914  408.14000338]
+
+ Logistic Regression...
+Mean accuracy of Logistic Regression (before optimization) on: 
+ - Validation set: 0.9143
+ - Test set: 0.8198
+with the coefficients: 
+ - coef_:  [[-6.60277272 -1.82688646]]
+ - intercept_: [3.11960872]
+
+ Grid Search...
+ - Best parameter:  2.6826957952797246
+
+ Mean accuracy of Logistic Regression (after optimization) on: 
+ - Validation set: 0.9167
+ - Test set: 0.8052
+with the coefficients: 
+ - coef_:  [[-7.50885726 -1.85901537]]
+ - intercept_: [3.28355635]

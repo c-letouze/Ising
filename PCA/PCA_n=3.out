@@ -1,0 +1,26 @@
+Loading the datasets...
+Loading the sub-dataset...
+
+ Principal Component Analysis...
+ - Number of components:  3
+Explained variance:  [211.24306894   1.20536743   1.04347543]
+Explained variance ratio:  [0.52807695 0.00301324 0.00260854]
+Singular values:  [1332.00245346  100.61749883   93.61703975]
+
+ Logistic Regression...
+Mean accuracy of Logistic Regression (before optimization) on: 
+ - Validation set: 1.0000
+ - Test set: 0.9124
+with the coefficients: 
+ - coef_:  [[-9.63886605 -0.63065124  1.56374757]]
+ - intercept_: [6.74392449]
+
+ Grid Search...
+ - Best parameter:  {'C': 56.89866029018293}
+
+ Mean accuracy of Logistic Regression (after optimization) on: 
+ - Validation set: 1.0000
+ - Test set: 0.9124
+with the coefficients: 
+ - coef_:  [[-9.63886605 -0.63065124  1.56374757]]
+ - intercept_: [6.74392449]
