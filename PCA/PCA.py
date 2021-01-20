@@ -151,7 +151,7 @@ if ferromagnetic:
     print("\n\n PCA ON THE FERROMAGNETIC SAMPLES \n")
     print("-----------------------------------")
 
-    build_datasets = True
+    build_datasets = False
     
     if build_datasets:
         
@@ -176,12 +176,12 @@ if ferromagnetic:
         print(" - Test labels: ", np.shape(L_test))
     
         # save with pickle
-        print("Dumping the datasets...")
-        with open('PCA_datasets.pkl', 'wb') as file_out:
-            dump_datasets = (X_train, X_val, X_test, 
-                    T_train, T_val, T_test, 
-                    L_train, L_val, L_test)
-            pkl.dump(dump_datasets, file_out)
+        # ~ print("Dumping the datasets...")
+        # ~ with open('PCA_datasets.pkl', 'wb') as file_out:
+            # ~ dump_datasets = (X_train, X_val, X_test, 
+                    # ~ T_train, T_val, T_test, 
+                    # ~ L_train, L_val, L_test)
+            # ~ pkl.dump(dump_datasets, file_out)
             
     else:
         print("Loading the datasets...")
@@ -195,7 +195,7 @@ if ferromagnetic:
     if make_subset:
         
         print("Building a subset...")
-        nb_samples_in_plot = 5000
+        nb_samples_in_plot = 400
         # ratio training:test  = 13:3
         nb_samples_from_train = int(nb_samples_in_plot * 13/16)
         nb_samples_from_test = nb_samples_in_plot - nb_samples_from_train
@@ -230,11 +230,11 @@ else:
     
     print("Building the datasets ...")
 
-    path_ordered = '../DataSets/anti_ordered_set.pkl'
+    path_ordered = '../DataSets/anti_ordered_set_noaugm.pkl'
     with open(path_ordered, 'rb') as file_in:
         x_ordered, y_ordered = pkl.load(file_in)
         
-    path_disordered = '../DataSets/anti_disordered_set.pkl'
+    path_disordered = '../DataSets/anti_disordered_set_noaugm.pkl'
     with open(path_disordered, 'rb') as file_in:
         x_disordered, y_disordered = pkl.load(file_in)
         
@@ -244,7 +244,7 @@ else:
     
     X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.3)
     
-    path_critical = '../DataSets/anti_critical_set.pkl'
+    path_critical = '../DataSets/anti_critical_set_noaugm.pkl'
     with open(path_critical, 'rb') as file_in:
         X_test, Y_test = pkl.load(file_in)
     
@@ -357,7 +357,6 @@ X_plot_PCA = transform_PCA(X_plot, pca, scaler)
 
 # the new dataset
 plot_PCA_VS_temp = False
-
 if plot_PCA_VS_temp:
     
     path_PCA_VS_temp_plot = "../report/fig/PCA_VS_temp.png"
@@ -445,7 +444,7 @@ if do_logreg :
     arr_sigmoid = np.column_stack((mag, sig))
 
     # plot
-    plot = False
+    plot = True
     if plot:
         path_logreg_plot = "../report/fig/logistic_reg_PCA.png"
         path_logreg_data = "../report/data/logReg_PCA.dat"
@@ -469,6 +468,14 @@ if do_logreg :
         # save data
         np.savetxt(path_logreg_data, arr_sigmoid, delimiter=' ')
     
+find_critical_temp = False
+if find_critical_temp:
+	list_crit = []
+	for i in range(np.abs(X_plot_PCA).shape[0]):   
+		if X_plot_PCA[i, 0] > 0.76 and X_plot_PCA[i, 0] < 0.78:
+			list_crit.append(T_plot[i])
+	arr_crit = np.array(list_crit)
+	print("Between 0.76 and 0.78, mean temp= ", np.mean(arr_crit))
     
 do_temp_regression = False
 if do_temp_regression:
@@ -508,7 +515,7 @@ if do_temp_regression:
     plt.show()
     
     # plot regression
-    plt.scatter(X_plot_PCA[:0], t_plot_pred, c=abs_error)
+    plt.scatter(np.abs(X_plot_PCA[:, 0]), t_plot_pred, c=abs_error)
     plt.xlabel("Firts component (absolute value)")
     plt.ylabel("Predicted temperature")
     plt.title("Temperature regression")
