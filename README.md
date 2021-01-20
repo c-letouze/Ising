@@ -10,8 +10,8 @@ A Machine Learning project on the Ising model. The main goal is to classify its 
  - `README.md`: this
  - `buildsets.py` : 
  - `preprocess_CNN.py`
- - `LETOUZE_IsingPhases.pdf` : report
- - `Classification_presentation.pdf` : presentation
+ - `IsingClassification_report.pdf` : report
+ - `IsingClassification_slides.pdf` : slides
  - `Data_antiferro.tar.xz` : the generated antiferromagnetic samples (not very good at low temperature)
  
 **CNN**
