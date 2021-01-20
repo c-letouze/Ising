@@ -24,4 +24,6 @@ Labelled (temperature and phase) datasets for the ferromagnetic and antiferromag
  - `antiferromagnetism.py` generates the antiferromagnetic samples
  
  **PCA**
- - `PCA.py` : doing PCA on the ferro and antiferro datasets and classify
+ - `PCA.py` : doing PCA on the ferro and antiferro datasets and classify the phases
+ - `PCA_datasets.tar.xz` : compressed datasets files for quick run
+ 
