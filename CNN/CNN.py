@@ -30,25 +30,26 @@ from keras.callbacks import EarlyStopping
 
 ################### FUNCTIONS ###################""
 
-def train_set(size):
+def train_set(size, path_ordered, path_disordered):
     """
     Build a training set of ordered and disordered samples.
     
-    arg size (int): number of samples in the training set
+    arg size (int): number of samples in the returned training set
+    arg path_ordered (str): paths to the ordered, CNN-preprocessed set
+    arg path_disordered (str): paths to the disordered, CNN-preprocessed set
     
     return x, y: array of samples, array of features
     """
     # ratio ordered/disordered samples: 7:6
-    assert size <= 130000
     ordered_size = int(size * 7/13)
     disordered_size = size - ordered_size
     
-    with open('ordered_CNN.pkl', 'rb') as file_in:
+    with open(path_ordered, 'rb') as file_in:
         x_load, y_load = pkl.load(file_in)
     x_ordered = x_load[:ordered_size]
     y_ordered = y_load[:ordered_size]
 
-    with open('disordered_CNN.pkl', 'rb') as file_in:
+    with open(path_disordered, 'rb') as file_in:
         x_load, y_load  = pkl.load(file_in)
     x_disordered = x_load[:disordered_size]
     y_disordered = y_load[:disordered_size]
@@ -60,7 +61,7 @@ def train_set(size):
     return x, y
     
    
-def test_set(size):
+def test_set(size, path):
     """
     Build a test set of near-critical samples.
     
@@ -68,9 +69,7 @@ def test_set(size):
     
     return x, y: array of samples, array of features
     """
-    assert size <= 30000
-    
-    with open('critical_CNN.pkl', 'rb') as file_in:
+    with open(path, 'rb') as file_in:
         x_load, y_load = pkl.load(file_in)
     x = x_load[:size]
     y = y_load[:size]
@@ -171,12 +170,14 @@ class Monitor(keras.callbacks.Callback):
 img_row, img_col = 40, 40
 input_shape = (img_row, img_col, 1)
 
-build_datasets = False
+build_datasets = True
 # if there is no dataset
 if build_datasets: 
     print("Building the datasets...")
     # Build train set
-    X, Y = train_set(5000)
+    path_ordered = 'ferro_ordered_CNN.pkl'
+    path_disordered = 'ferro_disordered_CNN.pkl'
+    X, Y = train_set(5000, path_ordered, path_disordered)
     X_train, X_val, Y_train, Y_val = train_test_split(X, Y, test_size=0.2)
     print("Training samples: ", np.shape(X_train))
     print("Training labels: ", np.shape(Y_train))
@@ -184,7 +185,8 @@ if build_datasets:
     T_train, L_train = Y_train[:, 0], Y_train[:, 1]
     T_val, L_val = Y_val[:, 0], Y_val[:, 1]
     # Build test set
-    X_test, Y_test = test_set(1000)
+    path_critical = 'ferro_critical_CNN.pkl'
+    X_test, Y_test = test_set(1000, path_critical)
     T_test, L_test = Y_test[:, 0], Y_test[:, 1]
     
     # save 
@@ -262,7 +264,7 @@ if study_learning_rate:
 
 ###################### GRID SEARCH: ARCHITECTURE ###################
         
-search_architecture = True
+search_architecture = False
 if search_architecture:
      
     print("\n Search architecture...")
@@ -342,7 +344,7 @@ if plot_fluctuations:
     monitor = Monitor(X_test, L_test)
     
     n_epochs = 10
-    n_iter = 3
+    n_iter = 5
     rec = np.empty((n_epochs, n_iter))
     for i in range(n_iter):
         model = create_CNN(n_Conv2D=[6], kernel=4, learning_rate=1e-5)
