@@ -33,6 +33,10 @@ def data_augmentation(a, shape=(40, 40)):
         a_ud.flatten(), a_lr.flatten(), b_ud.flatten(), b_lr.flatten()))
     return np.row_stack((arr, - arr))
     
+def spin_inversion(a):
+	""" Inverse the spins in the array a and return both arrays."""
+	return np.row_stack((a, -a))
+    
 ################### MAIN ##################
 
 # Temperature ranges
@@ -43,13 +47,16 @@ disordered_temp = [2.75, 3.0, 3.25, 3.75, 4.0]
 t_critical = 2.27
 
 # build the sets of ferromagnetic samples
-ferromagnetic = True
+ferromagnetic = False
 if ferromagnetic:
+    
+    print("Building the ferromagnetic datasets.")
     
     n_samples_per_t = 10000
     size_sample = 1600
     
     # ordered set
+    print("Ordered set...")
     x = np.empty((n_samples_per_t * len(ordered_temp), size_sample))
     y = np.empty((n_samples_per_t * len(ordered_temp), 2))
     t_cnt = 0
@@ -66,8 +73,10 @@ if ferromagnetic:
     dump_data = (x, y)
     with open(path, 'wb') as file_in:
         pickle.dump(dump_data, file_in)
+    print("DONE")
     
     # disordered set
+    print("Disordered set...")
     x = np.empty((n_samples_per_t * len(disordered_temp), size_sample))
     y = np.empty((n_samples_per_t * len(disordered_temp), 2))
     t_cnt = 0
@@ -84,8 +93,10 @@ if ferromagnetic:
     dump_data = (x, y)
     with open(path, 'wb') as file_in:
         pickle.dump(dump_data, file_in)
+    print("DONE")
         
     # near critical
+    print("Critical set...")
     x = np.empty((n_samples_per_t * len(critical_temp), size_sample))
     y = np.empty((n_samples_per_t * len(critical_temp), 2))
     t_cnt = 0
@@ -102,17 +113,22 @@ if ferromagnetic:
     dump_data = (x, y)
     with open(path, 'wb') as file_in:
         pickle.dump(dump_data, file_in)
-
+    print("DONE")
+ 
+########################################################################
 # build the sets of antiferromagnetic samples
 else:
     
+    print("Building the antiferromagnetic datasets.")
     n_samples_per_t = 20
-    augmentation = 16
+    #augmentation = 16
+    augmentation = 2
     size_t = n_samples_per_t * augmentation
     size_sample = 1600
     
     
     # ordered set
+    print("Ordered set...")
     x = np.empty((size_t * len(ordered_temp), size_sample))
     y = np.empty((size_t * len(ordered_temp), 2))
     t_cnt = 0
@@ -123,55 +139,62 @@ else:
         for i in range(n_samples_per_t):
             index_start = size_t*t_cnt + augmentation*i
             index_stop = size_t*t_cnt + augmentation*(i+1)
-            x[index_start : index_stop, : ] = data_augmentation(x_t[i])
+            #x[index_start : index_stop, : ] = data_augmentation(x_t[i])
+            x[index_start : index_stop, : ] = spin_inversion(x_t[i])
         y[size_t * t_cnt : size_t * (t_cnt+1), :] = y_t
         t_cnt +=1
     x, y = shuffle(x, y)
     #save with pickle
-    path = './DataSets/anti_ordered_set.pkl'   
+    path = './DataSets/anti_ordered_set_noaugm.pkl'   
     dump_data = (x, y)
     with open(path, 'wb') as file_in:
         pickle.dump(dump_data, file_in)
+    print("DONE")
     
     # disordered set
+    print("Disordered set...")
     x = np.empty((size_t * len(disordered_temp), size_sample))
     y = np.empty((size_t * len(disordered_temp), 2))
     t_cnt = 0
     for t in disordered_temp:
-        x_t = read_t_anti(t, root='./Data_antiferro2/')
+        x_t = read_t_anti(t, root='./Data_antiferro/')
         label = 0 if t < t_critical else 1
         y_t = np.full((size_t, 2), [t, label])
         for i in range(n_samples_per_t):
             index_start = size_t*t_cnt + augmentation*i
             index_stop = size_t*t_cnt + augmentation*(i+1)
-            x[index_start : index_stop, : ] = data_augmentation(x_t[i])
+            #x[index_start : index_stop, : ] = data_augmentation(x_t[i])
+            x[index_start : index_stop, : ] = spin_inversion(x_t[i])
         y[size_t * t_cnt : size_t * (t_cnt+1), :] = y_t
         t_cnt +=1
     x, y = shuffle(x, y)
     #save with pickle
-    path = './DataSets/anti_disordered_set.pkl'   
+    path = './DataSets/anti_disordered_set_noaugm.pkl'   
     dump_data = (x, y)
     with open(path, 'wb') as file_in:
         pickle.dump(dump_data, file_in)
+    print("DONE")
         
     # critical
-    # ordered set
+    print("Critical...")
     x = np.empty((size_t * len(critical_temp), size_sample))
     y = np.empty((size_t * len(critical_temp), 2))
     t_cnt = 0
     for t in critical_temp:
-        x_t = read_t_anti(t, root='./Data_antiferro2/')
+        x_t = read_t_anti(t, root='./Data_antiferro/')
         label = 0 if t < t_critical else 1
         y_t = np.full((size_t, 2), [t, label])
         for i in range(n_samples_per_t):
             index_start = size_t*t_cnt + augmentation*i
             index_stop = size_t*t_cnt + augmentation*(i+1)
-            x[index_start : index_stop, : ] = data_augmentation(x_t[i])
+            #x[index_start : index_stop, : ] = data_augmentation(x_t[i])
+            x[index_start : index_stop, : ] = spin_inversion(x_t[i])
         y[size_t * t_cnt : size_t * (t_cnt+1), :] = y_t
         t_cnt +=1
     x, y = shuffle(x, y)
     #save with pickle
-    path = './DataSets/anti_critical_set.pkl'   
+    path = './DataSets/anti_critical_set_noaugm.pkl'   
     dump_data = (x, y)
     with open(path, 'wb') as file_in:
         pickle.dump(dump_data, file_in)
+    print("DONE")
